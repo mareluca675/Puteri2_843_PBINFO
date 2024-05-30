@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+unsigned long long putere(unsigned long long a, unsigned long long n, unsigned long long p){
+    if(n == 0){
+        return 1;
+    }
+    if(n % 2 == 1){
+        return 1ULL * a * putere(a, n - 1, p) % p;
+    }
+    
+    unsigned long long P = 1ULL * putere(a, n / 2, p) % p;
+    return 1ULL * P * P % p;
+}
+
+int main()
+{
+    unsigned long long a, n, p;
+    cin >> a >> n >> p;
+    
+    unsigned long long mod = 1;
+    while(p --){
+        mod *= 10;   
+    }
+    
+    cout << putere(a, n, mod);
+
+    return 0;
+}
